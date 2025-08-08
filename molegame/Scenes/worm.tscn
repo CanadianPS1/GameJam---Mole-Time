@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cynu63ansl0ir"]
+[gd_scene load_steps=7 format=3 uid="uid://cynu63ansl0ir"]
 
+[ext_resource type="Script" uid="uid://cusnnuqm4aiht" path="res://scripts/worm.gd" id="1_l5dqu"]
 [ext_resource type="Texture2D" uid="uid://bgfkatlo88rv6" path="res://assets/sprites/tapeWorm.png" id="1_skiwb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l5dqu"]
@@ -28,6 +29,7 @@ animations = [{
 radius = 5.09902
 
 [node name="Worm" type="Node2D"]
+script = ExtResource("1_l5dqu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x1856")
