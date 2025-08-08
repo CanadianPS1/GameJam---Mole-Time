@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cynu63ansl0ir"]
+[gd_scene load_steps=6 format=3 uid="uid://cynu63ansl0ir"]
 
 [ext_resource type="Texture2D" uid="uid://bgfkatlo88rv6" path="res://assets/sprites/tapeWorm.png" id="1_skiwb"]
 
@@ -24,9 +24,16 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_skiwb"]
+radius = 5.09902
+
 [node name="Worm" type="Node2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x1856")
 autoplay = "default"
-frame_progress = 0.21266
+frame_progress = 0.099796
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-10, -5)
+shape = SubResource("CircleShape2D_skiwb")
