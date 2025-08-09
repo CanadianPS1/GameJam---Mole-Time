@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dm71g4wknokyg"]
+[gd_scene load_steps=10 format=3 uid="uid://dm71g4wknokyg"]
 
 [ext_resource type="Texture2D" uid="uid://q1bk5p4276qk" path="res://assets/sprites/bird.png" id="1_i8bdw"]
+[ext_resource type="Script" uid="uid://cxjni0irfx2xv" path="res://scripts/bird.gd" id="1_mcegt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mcegt"]
 atlas = ExtResource("1_i8bdw")
@@ -55,15 +56,17 @@ radius = 5.0
 height = 32.0
 
 [node name="bird" type="Node2D"]
+script = ExtResource("1_mcegt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pfwoh")
 animation = &"flying"
 autoplay = "flying"
+frame_progress = 0.0750656
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(2, -3)
 rotation = 1.5708
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_om1ab")
