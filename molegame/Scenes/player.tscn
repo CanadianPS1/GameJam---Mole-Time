@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c30fay32y0koe"]
+[gd_scene load_steps=14 format=3 uid="uid://c30fay32y0koe"]
 
 [ext_resource type="Script" uid="uid://dg4bv141o5eyb" path="res://scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://dfi52sd25ctmc" path="res://assets/sprites/moleIdle.png" id="2_cvnsp"]
@@ -77,6 +77,8 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_cvnsp"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_tx1dd"]
 radius = 9.05539
 
@@ -89,10 +91,12 @@ animation = &"run"
 autoplay = "idle"
 frame_progress = 0.302874
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, -2)
-shape = SubResource("CircleShape2D_tx1dd")
-
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-2, -2)
+shape = SubResource("CircleShape2D_cvnsp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -2)
+shape = SubResource("CircleShape2D_tx1dd")
