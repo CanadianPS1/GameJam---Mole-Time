@@ -4,15 +4,23 @@ const JUMP_VELOCITY = -200.0
 var inGround = false
 var speed = 200.0
 var numWorms = 0
+var wormTimer: Timer
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 
-func add_worm():
-	numWorms += 1
-	print("added worm")
+
+
 
 @onready var rigid_body: RigidBody2D = $RigidBody2D
+
+func _ready():
+	#creates worm timer
+		wormTimer = Timer.new()
+		wormTimer.wait_time = 1.0
+		wormTimer.timeout.connect(_on_worm_timer_timeout)
+		add_child(wormTimer)
+	
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -53,3 +61,26 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
 	move_and_slide()
+
+
+func add_worm():
+	numWorms += 1
+	print("added worm")
+	
+	if(numWorms == 1):
+		# starts worm timer after getting 1st worm
+		wormTimer.start()
+		
+func _on_worm_timer_timeout():
+	if speed > 0:
+		print("ur speed decreased")
+		decrease_speed()
+	else:
+		speed = 0
+		
+		
+func decrease_speed():
+	for i in numWorms:
+		speed -= 1
+	
+	print(speed)
