@@ -157,7 +157,7 @@ tile_set = SubResource("TileSet_wrm1d")
 position = Vector2(32, 74)
 
 [node name="bird" parent="." instance=ExtResource("4_3dryh")]
-position = Vector2(34, -91)
+position = Vector2(-73, -88)
 
 [node name="nonDigDetector" type="Area2D" parent="."]
 

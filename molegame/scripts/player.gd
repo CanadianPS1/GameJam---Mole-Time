@@ -132,6 +132,5 @@ func kill_player():
 	jump_velocity = 0
 	
 	await get_tree().create_timer(2).timeout
-	print("timer ran")
 	# reloads the scene
 	get_tree().reload_current_scene()

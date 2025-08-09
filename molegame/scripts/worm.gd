@@ -22,7 +22,6 @@ func _process(delta):
 		chase_player(delta)
 
 func _on_detection_radius_body_entered(body: CharacterBody2D):
-	print("Plr Detected")
 	player = body
 	is_chasing = true
 
@@ -33,11 +32,7 @@ func chase_player(delta):
 
 		global_position += direction * speed * delta
 		
-		if direction.x >= 0:
-			$AnimatedSprite2D.flip_h = true
-		else:
-			$AnimatedSprite2D.flip_h = false
-	
+		flip_sprite(direction)
 
 func _on_hit_box_body_entered(body):
 	
@@ -45,3 +40,10 @@ func _on_hit_box_body_entered(body):
 		body.add_worm()
 	
 	queue_free()
+	
+func flip_sprite(direction: Vector2):
+	if has_node("AnimatedSprite2D"):
+		if direction.x >= 0:
+			$AnimatedSprite2D.flip_h = true
+		else:
+			$AnimatedSprite2D.flip_h = false
