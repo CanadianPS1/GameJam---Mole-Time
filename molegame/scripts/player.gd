@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const JUMP_VELOCITY = -200.0
-
+var inGround = false
 var speed = 200.0
 var numWorms = 0
 
@@ -12,6 +12,7 @@ func add_worm():
 	numWorms += 1
 	print("added worm")
 
+@onready var rigid_body: RigidBody2D = $RigidBody2D
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -21,6 +22,9 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("moveUp") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_pressed("moveDown") and is_on_floor():
+		print("in grounds")
+		collision_mask &= ~(1 << 1)
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
