@@ -1,16 +1,21 @@
 extends CharacterBody2D
 
 var jump_velocity = -200.0
-var inGround = false
 var speed = 200.0
 var numWorms = 0
-var isDigging = false
+var isDigging = true
 var wormTimer: Timer
 var v = 0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var particles: GPUParticles2D = $GPUParticles2D
 @onready var rigid_body: RigidBody2D = $CollisionShape2D/RigidBody2D
+@onready var color_rect: ColorRect = $Camera2D/ColorRect
 
+func _process(delta):
+	if not isDigging:
+		color_rect.visible = true
+	else:
+		color_rect.visible = false
 func _ready():
 	#creates worm timer
 		wormTimer = Timer.new()
@@ -42,7 +47,7 @@ func _physics_process(delta: float) -> void:
 		
 		if direction == 0:
 			particles.emitting = false
-			animated_sprite.play("idle")
+			animated_sprite.play("jump")
 			animated_sprite.rotation = deg_to_rad(0) 
 		else:
 			particles.emitting = true
