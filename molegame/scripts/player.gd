@@ -1,10 +1,17 @@
 extends CharacterBody2D
 
-
-const SPEED = 200.0
 const JUMP_VELOCITY = -200.0
 
+var speed = 200.0
+var numWorms = 0
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+
+func add_worm():
+	numWorms += 1
+	print("added worm")
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -37,8 +44,8 @@ func _physics_process(delta: float) -> void:
 			
 	
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
 
 	move_and_slide()
