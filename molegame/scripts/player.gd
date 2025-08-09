@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("moveDown") and is_on_floor():
 		print("in grounds")
 		collision_mask &= ~(1 << 1)
-		rigid_body.gravity_scale = 0
+		#rigid_body.gravity_scale = 0
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("moveLeft", "moveRight")
