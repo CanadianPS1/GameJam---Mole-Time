@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dmusb3vnvdlrh"]
+[gd_scene load_steps=14 format=3 uid="uid://dmusb3vnvdlrh"]
 
 [ext_resource type="Texture2D" uid="uid://d2fjq13yd5ntt" path="res://assets/sprites/groundSprites.png" id="1_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://c30fay32y0koe" path="res://Scenes/player.tscn" id="2_wrm1d"]
@@ -32,6 +32,16 @@ texture_region_size = Vector2i(34, 34)
 [sub_resource type="TileSet" id="TileSet_wowpa"]
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_3dryh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wowpa"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 653.8
+inherit_velocity_ratio = 0.47
+spread = 172.952
+initial_velocity_min = 17.24
+initial_velocity_max = 17.24
+gravity = Vector3(0, 98, 0)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qxrlw"]
 texture = ExtResource("1_qxrlw")
@@ -159,9 +169,12 @@ position_smoothing_enabled = true
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Player"]
 z_index = 11
 position = Vector2(-4.3684, -6.0526)
+emitting = false
 amount = 20
 texture = ExtResource("3_wowpa")
+lifetime = 0.26
 randomness = 0.65
+process_material = SubResource("ParticleProcessMaterial_wowpa")
 
 [node name="diggable" type="TileMap" parent="."]
 z_index = -5

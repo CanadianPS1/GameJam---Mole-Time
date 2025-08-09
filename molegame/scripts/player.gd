@@ -8,7 +8,7 @@ var isDigging = false
 var wormTimer: Timer
 var v = 0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-
+@onready var particles: GPUParticles2D = $GPUParticles2D
 @onready var rigid_body: RigidBody2D = $CollisionShape2D/RigidBody2D
 
 func _ready():
@@ -34,11 +34,29 @@ func _physics_process(delta: float) -> void:
 		v = 500
 		await get_tree().create_timer(1).timeout
 	if isDigging:
+		particles.emitting = true
+		var direction := Input.get_axis("moveLeft", "moveRight")
+		if direction > 0:
+			animated_sprite.flip_h = false;
+		elif direction < 0:
+			animated_sprite.flip_h = true;
+		
+		if direction == 0:
+			particles.emitting = false
+			animated_sprite.play("idle")
+			animated_sprite.rotation = deg_to_rad(0) 
+		else:
+			particles.emitting = true
+			animated_sprite.play("run")
+			if direction < 0:
+				animated_sprite.rotation = deg_to_rad(-20) 
+			else:
+				animated_sprite.rotation = deg_to_rad(20)
 		if Input.is_action_pressed("moveDown"):
 			isDigging = true
 			v = 200
 		if Input.is_action_pressed("moveUp"):
-			v = JUMP_VELOCITY
+			v = jump_velocity
 		velocity.y = v
 		v = 0
 		#rigid_body.gravity_scale = 0
@@ -59,7 +77,7 @@ func _physics_process(delta: float) -> void:
 				animated_sprite.rotation = deg_to_rad(-20) 
 			else:
 				animated_sprite.rotation = deg_to_rad(20)
-	else:
+	elif not isDigging:
 		animated_sprite.play("jump")
 			
 	
@@ -100,4 +118,5 @@ func hit_by_worm():
 func _on_non_dig_detector_body_exited(body: Node2D) -> void:
 	isDigging = false
 	collision_mask |= (1 << 1)
+	particles.emitting = false
 	
