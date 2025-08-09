@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cynu63ansl0ir"]
+[gd_scene load_steps=8 format=3 uid="uid://cynu63ansl0ir"]
 
 [ext_resource type="Script" uid="uid://cusnnuqm4aiht" path="res://scripts/worm.gd" id="1_l5dqu"]
 [ext_resource type="Texture2D" uid="uid://bgfkatlo88rv6" path="res://assets/sprites/tapeWorm.png" id="1_skiwb"]
@@ -25,6 +25,9 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_l5dqu"]
+radius = 8.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_skiwb"]
 radius = 6.08276
 
@@ -35,6 +38,13 @@ script = ExtResource("1_l5dqu")
 sprite_frames = SubResource("SpriteFrames_x1856")
 autoplay = "default"
 frame_progress = 0.099796
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-12, -5)
+shape = SubResource("CircleShape2D_l5dqu")
 
 [node name="HitBox" type="Area2D" parent="."]
 z_index = 1
