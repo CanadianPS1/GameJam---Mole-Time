@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var jump_velocity = -200.0
+var jump_velocity = -500.0
 var speed = 200.0
 var numWorms = 0
 var isDigging = true
@@ -13,7 +13,8 @@ var v = 0
 
 func _process(delta):
 	if not isDigging:
-		color_rect.visible = true
+		pass
+		#color_rect.visible = true
 	else:
 		color_rect.visible = false
 func _ready():
@@ -60,7 +61,7 @@ func _physics_process(delta: float) -> void:
 			isDigging = true
 			v = 200
 		if Input.is_action_pressed("moveUp"):
-			v = jump_velocity
+			v = -200
 		velocity.y = v
 		v = 0
 		#rigid_body.gravity_scale = 0
