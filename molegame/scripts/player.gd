@@ -4,11 +4,12 @@ var jump_velocity = -200.0
 var inGround = false
 var speed = 200.0
 var numWorms = 0
+var isDigging = false
 var wormTimer: Timer
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
-@onready var rigid_body: RigidBody2D = $RigidBody2D
+@onready var rigid_body: RigidBody2D = $CollisionShape2D/RigidBody2D
 
 func _ready():
 	#creates worm timer
@@ -29,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("moveDown") and is_on_floor():
 		print("in grounds")
 		collision_mask &= ~(1 << 1)
-
+		#rigid_body.gravity_scale = 0
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("moveLeft", "moveRight")
