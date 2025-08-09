@@ -11,27 +11,26 @@ func _ready():
 	
 	if has_node("HitBox"):
 		$HitBox.body_entered.connect(_on_hit_box_body_entered)
-	else:
-		print("no hitbox :P")
 	
 func _process(delta):
-	var direction = (player.global_position - global_position).normalized()
 	
-	global_position += direction * speed * delta
+	#only move if the player is currently digging
+	#CAN place worms outsize of the dirt but, just don't and it'll be ok
+	if(player.isDigging):
+		var direction = (player.global_position - global_position).normalized()
 	
-	if direction.x >= 0:
-		$AnimatedSprite2D.flip_h = true
-	else:
-		$AnimatedSprite2D.flip_h = false
+		global_position += direction * speed * delta
 		
+		if direction.x >= 0:
+			$AnimatedSprite2D.flip_h = true
+		else:
+			$AnimatedSprite2D.flip_h = false
+			
+
 
 func _on_hit_box_body_entered(body):
 	
-	print("hit detected on", body.name)
-	
 	if body.has_method("add_worm"):
 		body.add_worm()
-	else:
-		print("lol loser")
 	
 	queue_free()

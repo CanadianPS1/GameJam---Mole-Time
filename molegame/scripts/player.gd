@@ -99,7 +99,6 @@ func add_worm():
 		
 func _on_worm_timer_timeout():
 	if speed > 0:
-		print("ur speed decreased")
 		hit_by_worm()
 	else:
 		speed = 0

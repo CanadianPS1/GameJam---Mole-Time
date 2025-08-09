@@ -7,5 +7,3 @@ func _ready():
 	
 	if has_node("HitBox"):
 		pass
-	else:
-		print("no hitbox :P")
