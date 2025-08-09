@@ -11,11 +11,14 @@ var v = 0
 @onready var rigid_body: RigidBody2D = $CollisionShape2D/RigidBody2D
 @onready var color_rect: ColorRect = $Camera2D/ColorRect
 
+
+
 func _process(delta):
 	if not isDigging:
 		color_rect.visible = true
 	else:
 		color_rect.visible = false
+	
 func _ready():
 	#creates worm timer
 		wormTimer = Timer.new()
@@ -23,7 +26,6 @@ func _ready():
 		wormTimer.timeout.connect(_on_worm_timer_timeout)
 		add_child(wormTimer)
 	
-
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -92,6 +94,10 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+func _on_non_dig_detector_body_exited(body: Node2D) -> void:
+	isDigging = false
+	collision_mask |= (1 << 1)
+	particles.emitting = false
 
 func add_worm():
 	numWorms += 1
@@ -109,17 +115,22 @@ func _on_worm_timer_timeout():
 		jump_velocity = 0
 		wormTimer.stop()
 		
-		
 func hit_by_worm():
 	for i in numWorms:
 		speed -= 1
 		jump_velocity += 1
 	
 	print(speed)
-
-
-func _on_non_dig_detector_body_exited(body: Node2D) -> void:
-	isDigging = false
-	collision_mask |= (1 << 1)
-	particles.emitting = false
 	
+func kill_player():
+	# allow player to se the screen
+	color_rect.visible = false
+	print("killing player")
+	
+	speed = 0
+	jump_velocity = 0
+	
+	await get_tree().create_timer(2).timeout
+	print("timer ran")
+	# reloads the scene
+	get_tree().reload_current_scene()
