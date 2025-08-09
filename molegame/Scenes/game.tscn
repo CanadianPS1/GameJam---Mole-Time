@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=4 uid="uid://dmusb3vnvdlrh"]
+[gd_scene load_steps=16 format=4 uid="uid://dmusb3vnvdlrh"]
 
 [ext_resource type="Texture2D" uid="uid://d2fjq13yd5ntt" path="res://assets/sprites/groundSprites.png" id="1_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://c30fay32y0koe" path="res://Scenes/player.tscn" id="2_wrm1d"]
 [ext_resource type="Texture2D" uid="uid://c1cyaj053vius" path="res://assets/sprites/dirtPart.png" id="3_wowpa"]
 [ext_resource type="PackedScene" uid="uid://cynu63ansl0ir" path="res://Scenes/worm.tscn" id="3_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://dm71g4wknokyg" path="res://Scenes/bird.tscn" id="4_3dryh"]
+[ext_resource type="FontFile" uid="uid://bakvoup6nuqd" path="res://assets/fonts/PixelOperator8.ttf" id="6_i6g32"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3dryh"]
 texture = ExtResource("1_qxrlw")
@@ -199,5 +200,17 @@ position = Vector2(596, 129)
 
 [node name="Worm3" parent="." instance=ExtResource("3_wrm1d")]
 position = Vector2(849, 238)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 418.0
+offset_top = -283.0
+offset_right = 626.0
+offset_bottom = -260.0
+theme_override_fonts/font = ExtResource("6_i6g32")
+theme_override_font_sizes/font_size = 8
+text = "Congrats on beating the tutoral, now find the main level"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [connection signal="body_exited" from="nonDigDetector" to="Player" method="_on_non_dig_detector_body_exited"]
