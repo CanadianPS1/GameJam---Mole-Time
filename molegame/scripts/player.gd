@@ -15,7 +15,7 @@ var v = 0
 
 func _process(delta):
 	if not isDigging:
-		pass#color_rect.visible = true
+		color_rect.visible = true
 	else:
 		color_rect.visible = false
 	
