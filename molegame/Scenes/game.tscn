@@ -157,7 +157,7 @@ use_parent_material = true
 tile_set = SubResource("TileSet_wrm1d")
 
 [node name="Worm" parent="." instance=ExtResource("3_wrm1d")]
-position = Vector2(-70, -58)
+position = Vector2(-146, 87)
 
 [node name="bird" parent="." instance=ExtResource("4_3dryh")]
 position = Vector2(34, -91)
