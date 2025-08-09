@@ -28,7 +28,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("moveUp") and is_on_floor():
 		velocity.y = jump_velocity
 	if Input.is_action_just_pressed("moveDown") and is_on_floor():
-		print("in grounds")
 		collision_mask &= ~(1 << 1)
 		isDigging = true
 		v = 500

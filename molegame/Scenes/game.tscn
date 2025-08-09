@@ -169,6 +169,7 @@ position_smoothing_enabled = true
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Player"]
 z_index = 11
 position = Vector2(-4.3684, -6.0526)
+rotation = 0.0019027
 emitting = false
 amount = 20
 texture = ExtResource("3_wowpa")
