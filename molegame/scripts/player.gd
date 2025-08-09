@@ -6,7 +6,7 @@ var speed = 200.0
 var numWorms = 0
 var isDigging = false
 var wormTimer: Timer
-
+var v = 0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 
@@ -34,6 +34,17 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("moveDown") and is_on_floor():
 		print("in grounds")
 		collision_mask &= ~(1 << 1)
+		isDigging = true
+		v = 500
+		await get_tree().create_timer(1).timeout
+	if isDigging:
+		if Input.is_action_pressed("moveDown"):
+			isDigging = true
+			v = 200
+		if Input.is_action_pressed("moveUp"):
+			v = JUMP_VELOCITY
+		velocity.y = v
+		v = 0
 		#rigid_body.gravity_scale = 0
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -85,3 +96,9 @@ func decrease_speed():
 		speed -= 1
 	
 	print(speed)
+
+
+func _on_non_dig_detector_body_exited(body: Node2D) -> void:
+	isDigging = false
+	collision_mask |= (1 << 1)
+	
