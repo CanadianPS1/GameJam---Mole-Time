@@ -6,7 +6,8 @@ enum BirdState {
 	POSITIONING,  # moving above player
 	WAITING,      # hovering above player
 	SWOOPING,     # diving down at player
-	RETURNING     # returning to it's spawn location
+	RETURNING,    # returning to it's spawn location
+	IDLE          # after the player dies, idle at corpse
 }
 
 var player: CharacterBody2D
@@ -36,10 +37,10 @@ func _ready():
 func _process(delta):
 	
 	# if the player starts digging, the bird will return home
-	if player.isDigging and current_state != BirdState.RETURNING:
+	if !player.isDead and current_state != BirdState.RETURNING:
 		current_state = BirdState.RETURNING
 	
-	if(!player.isDigging or current_state == BirdState.RETURNING):
+	if(!player.isDigging or current_state == BirdState.RETURNING or current_state == BirdState.IDLE):
 		match current_state:
 			BirdState.CIRCLING:
 				circle_behavior(delta)
@@ -51,6 +52,8 @@ func _process(delta):
 				swoop_behavior(delta)
 			BirdState.RETURNING:
 				return_behavior(delta)
+			BirdState.IDLE:
+				idle_behavior(delta)
 
 func _on_wait_timer_timeout():
 	current_state = BirdState.SWOOPING
@@ -99,8 +102,13 @@ func return_behavior(delta):
 	if global_position.distance_to(homePos) < 10:
 		global_position = homePos
 		current_state = BirdState.CIRCLING
-	
 		
+
+func idle_behavior(delta):
+	# bird stays on the ground and plays idle animation
+	if has_node("AnimatedSprite2D"):
+		$AnimatedSprite2D.play("idle")
+
 func flip_sprite(direction: Vector2):
 	if has_node("AnimatedSprite2D"):
 		if direction.x >= 0:
@@ -121,4 +129,6 @@ func _on_detection_radius_body_entered(delta):
 
 func _on_hit_box_body_entered(body):
 	if body.has_method("kill_player"):
+		$AnimatedSprite2D.play("idle")
 		body.kill_player()
+		current_state = BirdState.IDLE

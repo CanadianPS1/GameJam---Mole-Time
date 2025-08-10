@@ -6,6 +6,7 @@ var numWorms = 0
 var isDigging = true
 var wormTimer: Timer
 var v = 0
+var isDead: bool = false
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var particles: GPUParticles2D = $GPUParticles2D
 @onready var rigid_body: RigidBody2D = $CollisionShape2D/RigidBody2D
@@ -21,10 +22,10 @@ func _process(delta):
 	
 func _ready():
 	#creates worm timer
-		wormTimer = Timer.new()
-		wormTimer.wait_time = 1.0
-		wormTimer.timeout.connect(_on_worm_timer_timeout)
-		add_child(wormTimer)
+	wormTimer = Timer.new()
+	wormTimer.wait_time = 1.0
+	wormTimer.timeout.connect(_on_worm_timer_timeout)
+	add_child(wormTimer)
 	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -120,16 +121,19 @@ func hit_by_worm():
 		speed -= 1
 		jump_velocity += 1
 	
+	if speed <= 10:
+		kill_player();
+	
 	print(speed)
 	
 func kill_player():
-	# allow player to se the screen
-	color_rect.visible = false
-	print("killing player")
-	
+	#TODO: allow player to see the screen
 	speed = 0
 	jump_velocity = 0
 	
-	await get_tree().create_timer(2).timeout
+	isDigging = true
+	isDead = true
+	
+	await get_tree().create_timer(3).timeout
 	# reloads the scene
 	get_tree().reload_current_scene()
