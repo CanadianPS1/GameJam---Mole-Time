@@ -137,3 +137,10 @@ func kill_player():
 	await get_tree().create_timer(3).timeout
 	# reloads the scene
 	get_tree().reload_current_scene()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("you died")
+	Engine.time_scale = 0.5
+	body.get_node("CollisionShape2D").queue_free()
+	get_tree().reload_current_scene()
