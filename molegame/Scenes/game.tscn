@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://dmusb3vnvdlrh"]
+[gd_scene load_steps=37 format=4 uid="uid://dmusb3vnvdlrh"]
 
 [ext_resource type="Texture2D" uid="uid://d2fjq13yd5ntt" path="res://assets/sprites/groundSprites.png" id="1_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://c30fay32y0koe" path="res://Scenes/player.tscn" id="2_wrm1d"]
@@ -93,7 +93,7 @@ physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_qxrlw")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dryh"]
-size = Vector2(221, 4.625)
+size = Vector2(384, 2.3125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wowpa"]
 size = Vector2(306, 7.5)
@@ -145,6 +145,24 @@ size = Vector2(10, 130)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exi56"]
 size = Vector2(6, 144)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7t8sx"]
+size = Vector2(588, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mg4q0"]
+size = Vector2(228, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vm72l"]
+size = Vector2(222, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_22asu"]
+size = Vector2(8, 143.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fkdbe"]
+size = Vector2(15, 74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81klo"]
+size = Vector2(116, 6.5)
 
 [node name="Game" type="Node2D"]
 
@@ -225,15 +243,11 @@ position = Vector2(-670, 269)
 [node name="nonDigDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="nonDigDetector"]
-position = Vector2(26, -19)
-shape = SubResource("RectangleShape2D_3dryh")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="nonDigDetector"]
-position = Vector2(690, 83)
+position = Vector2(26, -20.1563)
 shape = SubResource("RectangleShape2D_3dryh")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="nonDigDetector"]
-position = Vector2(938, -189.313)
+position = Vector2(858, -179)
 shape = SubResource("RectangleShape2D_3dryh")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="nonDigDetector"]
@@ -304,18 +318,29 @@ shape = SubResource("RectangleShape2D_7nbq1")
 position = Vector2(629, 373)
 shape = SubResource("RectangleShape2D_exi56")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="nonDigDetector"]
+position = Vector2(690, 77)
+shape = SubResource("RectangleShape2D_7t8sx")
+
+[node name="CollisionShape2D24" type="CollisionShape2D" parent="nonDigDetector"]
+position = Vector2(810, 509)
+shape = SubResource("RectangleShape2D_mg4q0")
+
 [node name="CollisionShape2D21" type="CollisionShape2D" parent="nonDigDetector"]
-position = Vector2(810, 506)
-shape = SubResource("RectangleShape2D_3dryh")
+position = Vector2(1034, 485)
+shape = SubResource("RectangleShape2D_vm72l")
 
 [node name="CollisionShape2D22" type="CollisionShape2D" parent="nonDigDetector"]
-position = Vector2(1032, 490)
-shape = SubResource("RectangleShape2D_3dryh")
+position = Vector2(1146, 429)
+shape = SubResource("RectangleShape2D_22asu")
 
 [node name="CollisionShape2D23" type="CollisionShape2D" parent="nonDigDetector"]
-position = Vector2(1147, 472)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_3dryh")
+position = Vector2(1178.5, 322)
+shape = SubResource("RectangleShape2D_fkdbe")
+
+[node name="CollisionShape2D25" type="CollisionShape2D" parent="nonDigDetector"]
+position = Vector2(1122, -471.75)
+shape = SubResource("RectangleShape2D_81klo")
 
 [node name="worms" type="Node" parent="."]
 
@@ -373,6 +398,18 @@ position = Vector2(849, 238)
 [node name="Worm2" parent="worms" instance=ExtResource("3_wrm1d")]
 position = Vector2(596, 129)
 
+[node name="Worm19" parent="worms" instance=ExtResource("3_wrm1d")]
+position = Vector2(1130, 245)
+
+[node name="Worm20" parent="worms" instance=ExtResource("3_wrm1d")]
+position = Vector2(1130, 189)
+
+[node name="Worm21" parent="worms" instance=ExtResource("3_wrm1d")]
+position = Vector2(1130, 125)
+
+[node name="Worm22" parent="worms" instance=ExtResource("3_wrm1d")]
+position = Vector2(1130, 77)
+
 [node name="text" type="Node" parent="."]
 
 [node name="Label2" type="Label" parent="text"]
@@ -398,18 +435,6 @@ autowrap_mode = 2
 
 [node name="bird6" parent="." instance=ExtResource("4_3dryh")]
 position = Vector2(-62, 381)
-
-[node name="Worm" parent="." instance=ExtResource("3_wrm1d")]
-position = Vector2(1130, 245)
-
-[node name="Worm2" parent="." instance=ExtResource("3_wrm1d")]
-position = Vector2(1130, 189)
-
-[node name="Worm3" parent="." instance=ExtResource("3_wrm1d")]
-position = Vector2(1130, 125)
-
-[node name="Worm4" parent="." instance=ExtResource("3_wrm1d")]
-position = Vector2(1130, 77)
 
 [node name="Worm5" parent="." instance=ExtResource("3_wrm1d")]
 position = Vector2(1130, 13)
@@ -442,6 +467,18 @@ position = Vector2(728, 190)
 position = Vector2(794, 367)
 
 [node name="Worm14" parent="." instance=ExtResource("3_wrm1d")]
-position = Vector2(798, 480)
+position = Vector2(794, 469)
+
+[node name="Worm" parent="." instance=ExtResource("3_wrm1d")]
+position = Vector2(1122, 341)
+
+[node name="Worm2" parent="." instance=ExtResource("3_wrm1d")]
+position = Vector2(1138, 293)
+
+[node name="Worm3" parent="." instance=ExtResource("3_wrm1d")]
+position = Vector2(1106, 213)
+
+[node name="Worm4" parent="." instance=ExtResource("3_wrm1d")]
+position = Vector2(1122, 317)
 
 [connection signal="body_exited" from="nonDigDetector" to="Player" method="_on_non_dig_detector_body_exited"]
