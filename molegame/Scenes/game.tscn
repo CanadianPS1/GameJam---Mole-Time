@@ -10,8 +10,8 @@
 [ext_resource type="FontFile" uid="uid://bakvoup6nuqd" path="res://assets/fonts/PixelOperator8.ttf" id="6_i6g32"]
 [ext_resource type="Script" uid="uid://bp3uduauqjvgl" path="res://scripts/killBox.gd" id="8_v158k"]
 [ext_resource type="Texture2D" uid="uid://pcrxv4c21bh2" path="res://assets/sprites/worm.png" id="10_ldgsr"]
-[ext_resource type="Script" uid="uid://bilmelfs4sb4u" path="res://scripts/win_con.gd" id="10_o5yvi"]
-[ext_resource type="Script" uid="uid://bbt5123mwb71e" path="res://scripts/winscreen.gd" id="13_rfjv2"]
+[ext_resource type="Script" path="res://scripts/win_con.gd" id="10_o5yvi"]
+[ext_resource type="Script" path="res://scripts/winscreen.gd" id="13_rfjv2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3dryh"]
 texture = ExtResource("1_qxrlw")
