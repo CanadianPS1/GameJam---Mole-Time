@@ -89,6 +89,9 @@ func _physics_process(delta: float) -> void:
 			
 	
 	if direction:
+		var walking: AudioStreamPlayer2D = $walking
+		if not walking.playing:
+			walking.playing = true;
 		velocity.x = direction * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)

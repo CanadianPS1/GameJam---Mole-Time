@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4tt2skakon6d"]
+
+[ext_resource type="AudioStream" uid="uid://cle3vbap6yxfh" path="res://assets/sounds/I'm Giving Up - Everet Almond.mp3" id="1_fbmny"]
+
+[node name="music" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_fbmny")
+autoplay = true
+bus = &"music"
