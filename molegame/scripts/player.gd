@@ -120,6 +120,7 @@ func hit_by_worm():
 	for i in numWorms:
 		speed -= 1
 		jump_velocity += 1
+		
 	
 	if speed <= 10:
 		kill_player();
@@ -127,20 +128,19 @@ func hit_by_worm():
 	print(speed)
 	
 func kill_player():
-	#TODO: allow player to see the screen
 	speed = 0
 	jump_velocity = 0
 	
-	isDigging = true
+	isDigging = false
 	isDead = true
 	
 	await get_tree().create_timer(3).timeout
 	# reloads the scene
 	get_tree().reload_current_scene()
 
-
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print("you died")
 	Engine.time_scale = 0.5
 	body.get_node("CollisionShape2D").queue_free()
 	get_tree().reload_current_scene()
+	
